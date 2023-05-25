@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8.0.28
+    platform: linux/x86_64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: orchestrator
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql_data:/var/lib/mysql
+  orchestrator:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    container_name: mysql-orch
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./orchestrator.conf.json:/etc/orchestrator.conf.json
+    depends_on:
+      - mysql

@@ -14,5 +14,5 @@ cat <<EOF > /etc/orchestrator.conf.json
 }
 EOF
 fi
-
+sleep 10
 exec /usr/local/orchestrator/orchestrator http

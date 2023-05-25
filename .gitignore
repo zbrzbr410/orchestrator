@@ -22,3 +22,7 @@ main
 .vendor/go19
 /bin
 /build
+
+server/my.cnf/**/*
+server/mysql_data/**/*
+server/orchestrator.conf.json
