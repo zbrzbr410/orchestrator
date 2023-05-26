@@ -21,6 +21,11 @@ services:
     container_name: mysql-orch
     ports:
       - "3000:3000"
+    dns_opt:
+      - ndots:1
+    dns_search:
+      - c.opd-bridge-prod.internal
+      - c.opd-bridge-bi-prod.internal
     volumes:
       - ./orchestrator.conf.json:/etc/orchestrator.conf.json
     depends_on:
